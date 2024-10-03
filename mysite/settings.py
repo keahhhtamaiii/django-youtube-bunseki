@@ -25,7 +25,11 @@ SECRET_KEY = 'fbqb8$qri36h3wz9xx0paecc3e9ry9pss3sn1b5*#adl4z3^qf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '.herokuapp.com',  # 任意で追加
+]
 
 
 # Application definition
@@ -121,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 try:
     from .local_settings import *
