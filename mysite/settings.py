@@ -161,7 +161,6 @@ if not DEBUG:
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
-environ.Env.read_env()  # .envファイルを読み込む
 DATABASES = {
     'default': env.db(),  # DATABASE_URL を読み込む
 }
