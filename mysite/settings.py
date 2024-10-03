@@ -87,15 +87,14 @@ import dj_database_url
 
 
 # データベース設定
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',  # 作成したデータベース名
-        'USER': 'myprojectuser',  # 作成したユーザー名
-        'PASSWORD': 'password',  # ユーザーに設定したパスワード
-        'HOST': 'localhost',  # デフォルトではlocalhost
-        'PORT': '5432',  # PostgreSQLのデフォルトポート
+        'NAME': os.getenv('myproject', 'default-db-name'),
+        'USER': os.getenv('myprojectuser', 'default-user'),
+        'PASSWORD': os.getenv('password', 'default-password'),
+        'HOST': os.getenv('localhost'),
+        'PORT': os.getenv('5432'),
     }
 }
 
@@ -165,4 +164,4 @@ DATABASES = {
     'default': env.db(),  # DATABASE_URL を読み込む
 }
 
-YOUTUBE_API_KEY = env('YOUTUBE_API_KEY')
+YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY', 'default-api-key')
