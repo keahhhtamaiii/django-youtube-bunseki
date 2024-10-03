@@ -164,10 +164,9 @@ if not DEBUG:
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
-PORT = env.int('PORT', default=8000)
-
+environ.Env.read_env()  # .envファイルを読み込む
 DATABASES = {
-    'default': env.db('DATABASE_URL')
+    'default': env.db(),  # DATABASE_URL を読み込む
 }
 
 YOUTUBE_API_KEY = env('YOUTUBE_API_KEY')
