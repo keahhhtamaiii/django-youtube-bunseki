@@ -88,19 +88,19 @@ import dj_database_url
 
 # データベース設定
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myproject',  # 作成したデータベース名
-        'USER': 'myprojectuser',  # 作成したユーザー名
-        'PASSWORD': 'password',  # ユーザーに設定したパスワード
-        'HOST': 'localhost',  # デフォルトではlocalhost
-        'PORT': '5432',  # PostgreSQLのデフォルトポート
-    }
-}
+#  DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'myproject',  # 作成したデータベース名
+#          'USER': 'myprojectuser',  # 作成したユーザー名
+#          'PASSWORD': 'password',  # ユーザーに設定したパスワード
+#          'HOST': 'localhost',  # デフォルトではlocalhost
+#          'PORT': '5432',  # PostgreSQLのデフォルトポート
+#      }
+#  }
 
 
 #  DATABASES = {
