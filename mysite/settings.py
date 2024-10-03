@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '.herokuapp.com',  # 任意で追加
+    'youtube-bunseki-85c3e3b13c8a.herokuapp.com',  # 任意で追加
 ]
 
 
