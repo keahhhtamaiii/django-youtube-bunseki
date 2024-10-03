@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'youtube-bunseki-85c3e3b13c8a.herokuapp.com',  # 任意で追加
+    'youtube-bunseki-83ae3e4f59f6.herokuapp.com',  # 任意で追加
 ]
 
 
@@ -82,7 +82,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/DB_NAME')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myproject',  # 作成したデータベース名
+        'USER': 'myprojectuser',  # 作成したユーザー名
+        'PASSWORD': 'password',  # ユーザーに設定したパスワード
+        'HOST': 'localhost',  # デフォルトではlocalhost
+        'PORT': '5432',  # PostgreSQLのデフォルトポート
+    }
 }
 
 
@@ -148,5 +155,7 @@ import os
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
+PORT = env.int('PORT', default=8000)
+
 
 YOUTUBE_API_KEY = env('YOUTUBE_API_KEY')
