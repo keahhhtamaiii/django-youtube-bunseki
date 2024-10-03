@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,6 +83,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 import dj_database_url
+
+
+
+# データベース設定
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -150,12 +160,14 @@ if not DEBUG:
     django_heroku.settings(locals())
 
 
-import environ
-import os
+
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
 PORT = env.int('PORT', default=8000)
 
+DATABASES = {
+    'default': env.db('DATABASE_URL')
+}
 
 YOUTUBE_API_KEY = env('YOUTUBE_API_KEY')
